@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>게시글 리스트</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<style>
+    .layout{
+        margin : 0 auto; background-color: #1C0412; text-align: center;
+    }
+    .btn_main {
+        background-color: #1C0412; padding-left: 100px;
+    }
+    #vs_board {
+        text-align: center; font-size: 50px; color: #FFFFFF; font-weight: bold; padding-top: 30px;
+    }
+    .v_table{
+        margin-right: auto; margin-left: auto; margin-top: 50px; width: 700px;
+    }
+    .b_title{
+        font-size: 25px;
+        color: #FFFFFF;
+    }
+    .b_title>th:nth-child(1), .b_title>th:nth-child(3) {
+        width: 15%; padding-bottom: 15px;
+    }
+    .b_title>th:nth-child(2){
+        width: 70%; padding-bottom: 10px;
+    }
+    .v_table>tbody{
+        font-size: 18px; color: #FFFFFF; padding-top: 100px;
+    }
+    tbody>tr>td{
+        padding-bottom: 5px;
+    }
+    .bl{
+        padding-top: 30px; font-size: 18px;
+    }
+    #searchKeyword{
+        height:30px;
+    }
+    #se_button{
+        width: 50px; margin-top: 20px; height: 40px; border-radius: 15px; color: #FFFFFF; background-color: black; font-weight: bold; border: none;
+    }
+</style>
+
+<body>
+    <header th:replace="fragement/header :: header"></header>
+    <div class="btn_main"><a href="/"><img src="/img/home1.png"></a></div>
+    <div class="layout">
+        <div id="vs_board">Vestige 게시판</div>
+        <table class="v_table">
+            <thead>
+                <tr class="b_title">
+                    <th>번호</th>
+                    <th>제목</th>
+                    <th>이름</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="board : ${list}">
+                    <td th:text="${board.idx}"></td>
+                    <td><a th:href="@{/board/view(idx=${board.idx})}" th:text="${board.title}"></a></td>
+                    <td th:text="${board.name}"></td>
+                </tr>
+           </tbody>
+        </table>
+
+        <div class="bl">
+            <th:block th:each="page : ${#numbers.sequence(startPage, endPage)}">
+                <a th:if="${page != nowPage}" th:href="@{/board/list(page = ${page - 1}, searchKeyword = ${param.searchKeyword})}" th:text="${page}"></a>
+                <strong th:if="${page == nowPage}" th:text="${page}" style="color: red"></strong>
+            </th:block>
+        </div>
+        <form th:action="@{/board/list}" method="get">
+            <input type="text" name="searchKeyword" id="searchKeyword">
+            <button type="submit" id="se_button">검색</button>
+        </form>
+    </div>
+    <footer th:replace="fragement/footer :: footer"></footer>
+</body>
+</html>

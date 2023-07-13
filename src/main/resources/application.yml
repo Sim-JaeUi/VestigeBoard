@@ -1,0 +1,6 @@
+spring:
+  datasource:
+    driver-class-name: oracle.jdbc.OracleDriver
+    url: jdbc:oracle:thin:@vestige_high?TNS_ADMIN=C:/Sim/Wallet_Vestige
+    username: admin
+    password: Adnfkwlf1234

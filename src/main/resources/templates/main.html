@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org/">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VestigeStudio</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="/js/vestige.js"></script>
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    main{
+      height: 1515px;
+    }
+    #vs_title{
+      height: 100px; font-size: 53px; font-weight: bold; color: #FFFFFF; display: flex; border-bottom: 1px solid #FFFFFF;
+    }
+    #name, #email, #phone, #content, #title {
+      width: 1700px; font-size: 20px; background-color: #1C0412; border: 0 solid #1C0412;
+      height: 55px; padding: 0; outline: none; color: #FFFFFF; font-weight: bold;
+    }
+    #content{
+      padding-top: 5px; font-family: 'Noto Sans KR', sans-serif;
+    }
+    .btn_con>div{
+      margin-right: auto; margin-left: auto;
+    }
+    #write {
+      margin-right: 50px;
+    }
+    .con{
+      width: 1100px; color: #606060; font-weight: bold; background-color: #1C0412; height: 300px; font-size: 20px; border-bottom: 1px solid #FFFFFF; padding-top: 10px; word-wrap: break-word;
+    }
+    #content{
+      width: 1100px; color: #FFFFFF; height: 300px; border: 1px solid #606060; resize: none; padding-left: 10px;
+    }
+  </style>
+</head>
+<body>
+<header th:replace="fragement/header :: header"></header>
+
+<main>
+  <div id="head_text">
+    <div id="htext_1">18 eXperience</div>
+    <div id="htext_2">DESIGN</div>
+  </div>
+
+  <div class="ex_area" id="ex_area_1">
+    <div class="ex"><a href="https://www.instagram.com/p/CrSdw6NLc_V/"><img src="/img/delle.png" alt="" data-animated="/img/delle.gif" data-static="/img/delle.png" class="hov-anim"></a></div>
+    <div class="ex"><a href="https://www.instagram.com/p/Crct3K5rkKL/"><img src="/img/리얼꿀감.png" alt="" data-animated="/img/리얼꿀감.gif" data-static="/img/리얼꿀감.png" class="hov-anim"></a></div>
+    <div class="ex"><a href="https://www.instagram.com/p/CrknMByPNEZ/"><img src="/img/얼루잉.png" alt="" data-animated="/img/얼루잉.gif" data-static="/img/얼루잉.png" class="hov-anim"></a></div>
+    <div class="ex"><a href="https://www.instagram.com/p/Cruun2sLbZw/"><img src="/img/현담.png" alt="" data-animated="/img/현담.gif" data-static="/img/현담.png" class="hov-anim"></a></div>
+  </div>
+
+  <div class="ex_area" id="ex_area_2">
+    <div class="ex"><a href="#"><img src="/img/미남장어.png" alt="" data-animated="/img/미남장어.gif" data-static="/img/미남장어.png" class="hov-anim"></a></div>
+    <div class="ex"><a href="#"><img src="/img/선아담.png" alt="" data-animated="/img/선아담.gif" data-static="/img/선아담.png" class="hov-anim"></a></div>
+    <div class="ex"><a href="#"><img src="/img/직화로.png" alt="" data-animated="/img/직화로.gif" data-static="/img/직화로.png" class="hov-anim"></a></div>
+    <div class="ex"><a href="#"><img src="/img/둘저씨농장.png" alt="" data-animated="/img/둘저씨농장.gif" data-static="/img/둘저씨농장.png" class="hov-anim"></a></div>
+  </div>
+  <form action="/board/writepro" method="post"name="regform" id="regform" onsubmit="return sendit()"> <!-- , MultipartFile file -->
+    <div class="CRUD">
+      <div id="vs_title">
+        <div>Vestige</div>
+      </div>
+      <div class="CRUD_con"><input type="text" placeholder="성함" name="name" id="name" class="con"></div>
+      <div class="CRUD_con"><input type="text" placeholder="제목" name="title" id="title" class="con"></div>
+      <div class="CRUD_con"><input type="text" placeholder="이메일" name="email" id="email" class="con"></div>
+      <div class="CRUD_con"><input type="text" placeholder="연락처" name="phone" id="phone" class="con"></div>
+      <div class="con"><textarea type="text" placeholder="내용" name="content" id="content"></textarea></div>
+<!--      <div class="CRUD_con"><input type="file" name="file"></div>-->
+    </div>
+
+
+    <div class="btn_con">
+      <div>
+        <button type="submit" class="btn" id="write">흔적 남기기</button>
+        <button type="text" class="btn" onclick="location.href='/board/list'">흔적 게시판</button>
+  <!--      <div><input type="button" value="흔적 찾기" class="btn" id="read"></div>-->
+  <!--      <div><input type="button" value="흔적 바꾸기" class="btn" id="update"></div>-->
+  <!--      <div><input type="button" value="흔적 지우기" class="btn" id="delete"></div>-->
+        <!-- <div id="crud_text">#CRUD</div> -->
+      </div>
+    </div>
+  </form>
+</main>
+
+<footer th:replace="fragement/footer :: footer"></footer>
+</body>
+</html>
+<script>
+  $(".hov-anim").mouseover(function() {
+    $(this).attr("src", $(this).data("animated"))
+  }),
+  $(".hov-anim").mouseout(function() {
+    $(this).attr("src", $(this).data("static"))
+  });
+</script>
